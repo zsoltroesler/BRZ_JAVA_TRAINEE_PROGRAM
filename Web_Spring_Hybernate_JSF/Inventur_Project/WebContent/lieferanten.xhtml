@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/formulartemplate.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:define name="header">
+		<h1>Alle Lieferanten</h1>
+	</ui:define>
+	<ui:define name="content">
+		<b:button value="Neuer Lieferant" outcome="lieferantEingabe.jsf">
+		</b:button>
+
+		<b:form>
+			<br />
+			<b:dataTable value="#{lieferantenBean.lieferanten}" var="lieferant"
+				excel="true" csv="true" pdf="true" columnVisibility="true"
+				copy="true" print="true">
+				<b:dataTableColumn>
+					<f:facet name="header">Lieferant-ID</f:facet>
+					<h:outputLabel id="LieferantId" value="#{lieferant.lieferantId}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">Lieferant</f:facet>
+					<h:outputLabel id="LieferantName"
+						value="#{lieferant.lieferantName}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">E-MAIL-Adresse</f:facet>
+					<h:outputLabel id="LieferantEmail"
+						value="#{lieferant.lieferantEmail}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">Telefonnummer</f:facet>
+					<h:outputLabel id="LieferantTel" value="#{lieferant.lieferantTel}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<h:commandLink action="#{lieferantenBean.aendern}"
+						value="&Auml;ndern">
+						<f:param name="lid" value="#{lieferant.lid}" />
+					</h:commandLink>
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<h:commandLink action="#{lieferantenBean.loeschen}"
+						value="L&ouml;schen">
+						<f:param name="lid" value="#{lieferant.lid}" />
+					</h:commandLink>
+				</b:dataTableColumn>
+			</b:dataTable>
+		</b:form>
+		<br />
+
+		<b:button value="Zur&uuml;ck zu Produkten" outcome="index.jsf">
+		</b:button>
+
+	</ui:define>
+
+
+</ui:composition>

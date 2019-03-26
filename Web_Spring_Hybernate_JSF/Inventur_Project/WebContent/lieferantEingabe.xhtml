@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/templates/formulartemplate.xhtml">
+
+	<ui:define name="header">
+		<h1>Lieferant eingeben:</h1>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form inline="true">
+		<h:messages />
+			<h:panelGrid columns="1" cellpadding="">
+				<b:inputText placeholder="z.B. L001" label="Lieferant-ID:"
+					value="#{lieferantEingabeBean.lieferant.lieferantId}" required="true"
+					requiredMessage="Lieferant-ID darf nicht leer sein und max. 12 Karakter!" >
+					<f:validateLength maximum="12" />
+				</b:inputText>
+				<b:inputText label="Lieferant:"
+					value="#{lieferantEingabeBean.lieferant.lieferantName}"  required="true"
+					requiredMessage="Lieferant darf nicht leer sein!"/>
+				<b:inputText label="E-MAIL-Adresse"
+					value="#{lieferantEingabeBean.lieferant.lieferantEmail}">
+					<f:facet name="prepend">
+						<b:icon name="envelope" />
+					</f:facet>
+				</b:inputText>
+				<b:inputText label="Telefonnummer:"
+					value="#{lieferantEingabeBean.lieferant.lieferantTel}">
+					<f:facet name="prepend">
+						<b:icon name="phone" />
+					</f:facet>
+				</b:inputText>
+			</h:panelGrid>
+			<br />
+			<b:commandButton action="#{lieferantEingabeBean.speichern}"
+				value="Speichern" />
+			<br />
+			<br />
+			<b:button outcome="lieferanten.jsf" value="Zur&uuml;ck" />
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

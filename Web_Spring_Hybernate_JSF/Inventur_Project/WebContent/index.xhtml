@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/templates/formulartemplate.xhtml">
+
+	<ui:define name="header">
+		<h1>Inventur Webapp</h1>
+	</ui:define>
+
+
+	<ui:define name="content">
+		<b:button value="Neues Produkt" outcome="produktEingabe.jsf" />
+
+		<b:button value="Alle Lieferanten" outcome="lieferanten.jsf"
+			style="margin-left: 16px;" />
+
+		<b:form>
+			<br />
+			<b:dataTable value="#{indexBean.produkte}" var="produkt" excel="true"
+				csv="true" pdf="true" columnVisibility="true" copy="true"
+				print="true">
+				<b:dataTableColumn>
+					<f:facet name="header">Produkt-ID</f:facet>
+					<h:outputLabel id="ProduktId" value="#{produkt.produktId}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">Produkt</f:facet>
+					<h:outputLabel id="ProduktName" value="#{produkt.produktName}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">Preis (€)</f:facet>
+					<h:outputLabel id="ProduktPreis" value="#{produkt.produktPreis}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">Lieferant</f:facet>
+					<h:outputLabel id="ProduktLieferant"
+						value="#{produkt.produktLieferant}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">Anzahl</f:facet>
+					<h:outputLabel id="ProduktAnzahl" value="#{produkt.produktAnzahl}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+				<f:facet name="header">Ändern</f:facet>
+					<h:commandLink action="#{indexBean.aendern}" value="&Auml;ndern">
+						<f:param name="pid" value="#{produkt.pid}" />
+					</h:commandLink>
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+				<f:facet name="header">Löschen</f:facet>
+					<h:commandLink action="#{indexBean.loeschen}" value="L&ouml;schen">
+						<f:param name="pid" value="#{produkt.pid}" />
+					</h:commandLink>
+				</b:dataTableColumn>
+			</b:dataTable>
+		</b:form>
+		<br />
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 
+xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/templates/formulartemplate.xhtml">
+
+	<ui:define name="header">
+		<h3>Die Produkte von dem Lieferant</h3>
+	</ui:define>
+
+	<ui:define name="content">
+		
+		<h:form style="padding-right:500px">
+		<br />
+			<b:dataTable value="#{lieferantLoeschenUeberpruefenBean.lieferant.produkte}" var="produkt">
+				<b:dataTableColumn>
+					<f:facet name="header">Produkt-ID</f:facet>
+					<h:outputLabel id="ProduktId" value="#{produkt.produktId}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">Produkt</f:facet>
+					<h:outputLabel id="ProduktName" value="#{produkt.produktName}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">Preis (€)</f:facet>
+					<h:outputLabel id="ProduktPreis" value="#{produkt.produktPreis}" />
+				</b:dataTableColumn>
+				<b:dataTableColumn>
+					<f:facet name="header">Anzahl</f:facet>
+					<h:outputLabel id="ProduktAnzahl" value="#{produkt.produktAnzahl}" />
+				</b:dataTableColumn>
+			</b:dataTable>
+			<h4>L&ouml;schen des Lieferanten wird auch seine Produkte l&ouml;schen. Wollen Sie es durchf&uuml;hren?</h4>
+			<br />
+			<b:commandButton action="#{lieferantLoeschenUeberpruefenBean.loeschen}"
+				value="Ja" />
+			<b:button value="Nein" outcome="lieferanten.jsf"
+			style="margin-left: 16px;" />
+		</h:form>
+		<br />
+	</ui:define>
+
+</ui:composition>

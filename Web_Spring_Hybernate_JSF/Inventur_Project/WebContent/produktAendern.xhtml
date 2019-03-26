@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/templates/formulartemplate.xhtml">
+
+	<ui:define name="header">
+		<h1>Produkt &auml;ndern:</h1>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:messages />
+			<h:panelGrid columns="1" cellpadding="">
+				<b:inputText label="Produkt-ID:" readonly="true"
+					value="#{produktAendernBean.produkt.produktId}">
+					<f:facet name="append">
+						<h:outputText value="unver&auml;nderlich" />
+					</f:facet>
+				</b:inputText>
+				<b:inputText label="Produkt:"
+					value="#{produktAendernBean.produkt.produktName}" required="true"
+					requiredMessage="Produkt darf nicht leer sein!" />
+				<b:inputText label="Preis:"
+					value="#{produktAendernBean.produkt.produktPreis}"
+					validatorMessage="Wert für Preis mind. 1 und max 99999!">
+					<f:validateLongRange minimum="1" maximum="99999" />
+				</b:inputText>
+				<b:selectOneMenu label="Lieferant:" required="true"
+					value="#{produktAendernBean.produkt.lid}">
+					<f:selectItems value="#{produktAendernBean.lieferantNamen}" />
+				</b:selectOneMenu>
+				<b:inputText label="Anzahl:"
+					value="#{produktAendernBean.produkt.produktAnzahl}"
+					validatorMessage="Wert für Anzahl mind. 0 und max 99999!">
+					<f:validateLongRange minimum="1" maximum="99999" />
+				</b:inputText>
+			</h:panelGrid>
+			<br />
+			<b:commandButton action="#{produktAendernBean.speichern}"
+				value="Speichern" />
+			<br />
+			<br />
+			<b:button outcome="index.jsf" value="Zur&uuml;ck" />
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+

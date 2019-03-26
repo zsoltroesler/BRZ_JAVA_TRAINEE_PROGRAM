@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+body {
+	font-family: arial;
+	background-image:url("../BRZ_hintergrund.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	padding: 16px;
+}
+
